@@ -8,6 +8,7 @@ public class MovementController : MonoBehaviour
     private float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
 
+
     void Update()
     {
         movementInput.x = Input.GetAxisRaw("Horizontal");
