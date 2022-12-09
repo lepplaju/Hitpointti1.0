@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LyontiController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject hammer;
     void Start()
     {
         
@@ -13,6 +13,9 @@ public class LyontiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //hammer.transform.Rotate;
+        }
     }
 }
