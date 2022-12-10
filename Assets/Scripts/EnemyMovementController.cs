@@ -6,7 +6,7 @@ public class EnemyMovementController : MonoBehaviour
 {
     private GameObject pukki;
     [SerializeField] private Rigidbody2D rb;
-    public float moveSpeed;
+    public float moveSpeed =1f;
 
     private void Start()
     {
@@ -15,8 +15,6 @@ public class EnemyMovementController : MonoBehaviour
     void Update()
     {
         Vector3 direction = (pukki.transform.position - transform.position);
-        rb.MovePosition(transform.position + direction * moveSpeed * Time.deltaTime);
-        //Halutaan että liikkuu pukkia kohti
-
+        rb.velocity = (transform.position + direction * moveSpeed);
     }
 }
