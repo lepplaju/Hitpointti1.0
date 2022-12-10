@@ -991,7 +991,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1867286159}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 2048141306}
   m_Lens:
     FieldOfView: 60
@@ -1196,37 +1196,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1867286158
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1867286159}
-  m_Layer: 0
-  m_Name: cameraLookAt
-  m_TagString: Untagged
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1867286159
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867286158}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.096, y: 1.32, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2048141306}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048141300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5131897023280139335, guid: 8279cacc00730ff4daf9fcf7bcb7063c, type: 3}
@@ -1307,6 +1276,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4555629139165957490, guid: 8279cacc00730ff4daf9fcf7bcb7063c, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4980323580012394309, guid: 8279cacc00730ff4daf9fcf7bcb7063c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5131897023280139335, guid: 8279cacc00730ff4daf9fcf7bcb7063c, type: 3}
       propertyPath: m_Name
       value: Pukki
@@ -1355,6 +1332,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6578339214616146931, guid: 8279cacc00730ff4daf9fcf7bcb7063c, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 2048141302}
+    - target: {fileID: 6578339214616146931, guid: 8279cacc00730ff4daf9fcf7bcb7063c, type: 3}
+      propertyPath: keskiPiste
+      value: 
+      objectReference: {fileID: 827833886}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8279cacc00730ff4daf9fcf7bcb7063c, type: 3}
 --- !u!1001 &7340776981905743830

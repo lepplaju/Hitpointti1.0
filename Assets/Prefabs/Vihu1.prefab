@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1480467336828316730}
   - component: {fileID: 2753282067041446299}
   - component: {fileID: -1072845415692767587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Vihu1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.1
+  m_LinearDrag: 0.2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -153,6 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyParent: {fileID: 0}
   CanvasPrefab: {fileID: 683162362029516172, guid: e95e12d13f7d8c94898e5b2a785babef, type: 3}
-  maxHP: 100
-  healthSlider: {fileID: 350184352767179577, guid: 53dbdbfeffbbeb742937fb92fb97f4f2, type: 3}
+  healthSlider: {fileID: 0}
   healthText: {fileID: 0}
