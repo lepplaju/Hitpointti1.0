@@ -17,13 +17,12 @@ public class EnemyHPController : MonoBehaviour
     private void Awake()
     {
         enemyParent = gameObject;
-        enemyCanvas = Instantiate(CanvasPrefab);
+        enemyCanvas = Instantiate(CanvasPrefab,enemyParent.transform);
         HealthPoints = maxHP;
         healthSlider = enemyCanvas.GetComponentInChildren<Slider>();
         healthSlider.maxValue = maxHP;
         healthSlider.value = maxHP;
     }
-
 
     // Update is called once per frame
     void Update()
@@ -33,6 +32,10 @@ public class EnemyHPController : MonoBehaviour
     public void updateHealth()
     {
         healthSlider.value = HealthPoints;
+        if (healthSlider.value <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void TakeDamage(int damage)
     {
