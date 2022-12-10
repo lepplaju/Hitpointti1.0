@@ -6,6 +6,8 @@ public class SpawningEnemies : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     //[SerializeField] Transform SpawnPoint;
+    [SerializeField] int maxNumberOfEnemies;
+    [SerializeField] int numberOfEnemiesAlive;
 
     private void Start()
     {
@@ -14,6 +16,10 @@ public class SpawningEnemies : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyPrefab,this.transform);
+        if (maxNumberOfEnemies > numberOfEnemiesAlive)
+        {
+            Instantiate(enemyPrefab, this.transform);
+            numberOfEnemiesAlive++;
+        }
     }
 }
