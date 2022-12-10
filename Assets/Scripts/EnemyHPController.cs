@@ -17,6 +17,7 @@ public class EnemyHPController : MonoBehaviour
     {
         enemyParent = gameObject;
         enemyCanvas = Instantiate(CanvasPrefab);
+        healthSlider = CanvasPrefab.GetComponentInChildren<Slider>();
     }
 
     // Update is called once per frame
