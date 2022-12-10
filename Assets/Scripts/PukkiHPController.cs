@@ -60,6 +60,7 @@ public class PukkiHPController : MonoBehaviour
     {
         audioSource.clip = hit;
         audioSource.Play();
+    }
     private void changeColorBack()
     {
         glowHealthbar.color = new Color32(13, 128, 0, 255);

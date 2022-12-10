@@ -20,6 +20,7 @@ public class PukkiMelee : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        pukkiAnimator = GetComponentInChildren<Animator>();
     }
 
     public void PlaySwingSound()
@@ -27,12 +28,6 @@ public class PukkiMelee : MonoBehaviour
         audioSource.clip = swing;
         audioSource.Play();
     }
-
-    private void Awake()
-    {
-        pukkiAnimator = GetComponentInChildren<Animator>();
-    }
-    // Update is called once per frame
     void Update()
     {
         if(Time.time >= nextAttackTime)
