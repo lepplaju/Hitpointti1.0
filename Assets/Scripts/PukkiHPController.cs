@@ -11,6 +11,7 @@ public class PukkiHPController : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private float pukkiMaxHP = 100;
+    [SerializeField] private Image glowHealthbar;
     private float pukkiHP;
     private GameObject playerObj;
 
@@ -18,6 +19,7 @@ public class PukkiHPController : MonoBehaviour
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
         pukkiHP = pukkiMaxHP;
+        healthText.text = "Health " + pukkiHP + " / "+ pukkiMaxHP;
     }
     private void Update()
     {
@@ -26,7 +28,9 @@ public class PukkiHPController : MonoBehaviour
 
     private void UpdateHP()
     {
-        Debug.Log("taalla ollaan");
+        glowHealthbar.color = new Color32(0, 0, 0, 0);
+        Invoke("changeColorBack", .1f);
+        healthText.text = "Health " + pukkiHP + " / " + pukkiMaxHP;
         healthSlider.value = pukkiHP;
         if (pukkiHP <= 0) {
             Destroy(playerObj);
@@ -37,5 +41,9 @@ public class PukkiHPController : MonoBehaviour
     {
         pukkiHP -= damageTaken;
         UpdateHP();
+    }
+    private void changeColorBack()
+    {
+        glowHealthbar.color = new Color32(13, 128, 0, 255);
     }
 }

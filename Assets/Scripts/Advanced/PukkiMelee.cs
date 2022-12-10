@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PukkiMelee : MonoBehaviour
 {
     public Transform attackPoint;
     public float attackRange = 1f;
     public LayerMask enemyLayer;
+    [SerializeField] private Animator pukkiAnimator;
 
     public int attackDamage = 30;
 
+    private void Awake()
+    {
+        pukkiAnimator = GetComponentInChildren<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log("lyötyon");
+            playAttack();
             Attack();
         }
     }
@@ -36,5 +41,10 @@ public class PlayerCombat : MonoBehaviour
         if (attackPoint == null) return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void playAttack()
+    {
+        pukkiAnimator.SetTrigger("MeleeAttack");
     }
 }
