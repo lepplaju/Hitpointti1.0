@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PukkiMelee : MonoBehaviour
 {
     public Transform attackPoint;
     
     public LayerMask enemyLayer;
+    [SerializeField] private Animator pukkiAnimator;
 
     private AudioSource audioSource;
     public AudioClip swing;
@@ -27,6 +28,10 @@ public class PlayerCombat : MonoBehaviour
         audioSource.Play();
     }
 
+    private void Awake()
+    {
+        pukkiAnimator = GetComponentInChildren<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -34,11 +39,13 @@ public class PlayerCombat : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
                     {
-                        Debug.Log("lyötyon");
+                        Debug.Log("lyï¿½tyon");
+                        playAttack();
                         Attack();
                         PlaySwingSound();
                         nextAttackTime = Time.time + 1f / attackRate;
                     }
+
         }
         
     }
@@ -59,5 +66,10 @@ public class PlayerCombat : MonoBehaviour
         if (attackPoint == null) return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void playAttack()
+    {
+        pukkiAnimator.SetTrigger("MeleeAttack");
     }
 }
