@@ -5,19 +5,27 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Transform attackPoint;
-    public float attackRange = 1f;
+    
     public LayerMask enemyLayer;
 
     public int attackDamage = 30;
+    public float attackRange = 1f;
+    public float attackRate = 2f;
+    float nextAttackTime = 0f;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if(Time.time >= nextAttackTime)
         {
-            Debug.Log("lyötyon");
-            Attack();
+            if (Input.GetButtonDown("Fire1"))
+                    {
+                        Debug.Log("lyötyon");
+                        Attack();
+                        nextAttackTime = Time.time + 1f / attackRate;
+                    }
         }
+        
     }
 
     void Attack()
