@@ -137,8 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd18ae16fa5a2834095d09a4f767436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1480467336828316730}
+  enemyRb: {fileID: 0}
   moveSpeed: 3
+  knockBackMultiplier: 1000
+  canMove: 1
 --- !u!114 &-1072845415692767587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff2a633de0a94342b00d125b6a58ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMovementController: {fileID: 0}
   enemyParent: {fileID: 0}
   CanvasPrefab: {fileID: 683162362029516172, guid: e95e12d13f7d8c94898e5b2a785babef, type: 3}
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
+  splatterAnimParent: {fileID: 6364599422924551608, guid: d4e5120e5117e8843ae98474b7b6fb78, type: 3}

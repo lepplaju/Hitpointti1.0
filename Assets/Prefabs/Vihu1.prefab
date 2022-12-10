@@ -140,6 +140,7 @@ MonoBehaviour:
   enemyRb: {fileID: 0}
   moveSpeed: 3
   knockBackMultiplier: 25
+  canMove: 1
 --- !u!114 &-1072845415692767587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,3 +158,4 @@ MonoBehaviour:
   CanvasPrefab: {fileID: 683162362029516172, guid: e95e12d13f7d8c94898e5b2a785babef, type: 3}
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
+  splatterAnimParent: {fileID: 6364599422924551608, guid: d4e5120e5117e8843ae98474b7b6fb78, type: 3}
