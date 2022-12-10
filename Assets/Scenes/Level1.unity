@@ -2551,6 +2551,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 425705952}
     - target: {fileID: 1751346878783237396, guid: ba94de5a4d862ad478307b798c27a3c6, type: 3}
+      propertyPath: pukkiMaxHP
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751346878783237396, guid: ba94de5a4d862ad478307b798c27a3c6, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1645318459}

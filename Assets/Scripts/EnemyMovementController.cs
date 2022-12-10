@@ -5,20 +5,35 @@ using UnityEngine;
 public class EnemyMovementController : MonoBehaviour
 {
     private Transform pukki;
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D enemyRb;
     public float moveSpeed =1f;
+    public float knockBackMultiplier;
+    public bool canMove = true;
 
     private void Start()
     {
+        knockBackMultiplier = 50f;
+        enemyRb = GetComponent<Rigidbody2D>();
         pukki = GameObject.FindGameObjectWithTag("Player").transform;
     }
     void Update()
     {
-        if(pukki)
+        if(pukki && canMove)
         {
-            //Vector2 direction = pukki.position - transform.position;
             transform.position = Vector2.MoveTowards(transform.position,pukki.position, moveSpeed * Time.deltaTime);
-        }
-        
+        }   
+    }
+
+    public void knockBack()
+    {
+        canMove = false;
+        Invoke("MoveTrue", .1f);
+        Debug.Log("knockback");
+        enemyRb.AddForce((transform.position-pukki.transform.position) *knockBackMultiplier);
+        //Vector2.MoveTowards(pukki.position, transform.position,knockBackMultiplier * Time.deltaTime);
+    }
+    private void MoveTrue()
+    {
+        canMove = true;
     }
 }

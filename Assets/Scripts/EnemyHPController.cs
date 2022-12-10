@@ -6,10 +6,11 @@ using TMPro;
 
 public class EnemyHPController : MonoBehaviour
 {
+    [SerializeField] private EnemyMovementController enemyMovementController;
     [SerializeField] private GameObject enemyParent;
     private Canvas enemyCanvas;
     [SerializeField] Canvas CanvasPrefab;
-    private int maxHP = 100;
+    private int EnemyMaxHP = 100;
     private int HealthPoints;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
@@ -17,12 +18,13 @@ public class EnemyHPController : MonoBehaviour
 
     private void Awake()
     {
+        enemyMovementController = GetComponentInParent<EnemyMovementController>();
         enemyParent = gameObject;
         enemyCanvas = Instantiate(CanvasPrefab,enemyParent.transform);
-        HealthPoints = maxHP;
+        HealthPoints = EnemyMaxHP;
         healthSlider = enemyCanvas.GetComponentInChildren<Slider>();
-        healthSlider.maxValue = maxHP;
-        healthSlider.value = maxHP;
+        healthSlider.maxValue = EnemyMaxHP;
+        healthSlider.value = EnemyMaxHP;
         spawningEnemies = enemyParent.GetComponentInParent<SpawningEnemies>();
     }
 
@@ -30,6 +32,12 @@ public class EnemyHPController : MonoBehaviour
     void Update()
     {
         enemyCanvas.transform.position = new Vector3(enemyParent.transform.position.x, enemyParent.transform.position.y + 1f, transform.position.z);
+    }
+    public void TakeDamage(int damage)
+    {
+        enemyMovementController.knockBack();
+        HealthPoints -= damage;
+        updateHealth();
     }
     public void updateHealth()
     {
@@ -40,10 +48,5 @@ public class EnemyHPController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void TakeDamage(int damage)
-    {
-        Debug.Log(damage);
-        HealthPoints -= damage;
-        updateHealth();
-    }
+
 }

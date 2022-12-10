@@ -21,7 +21,7 @@ public class PukkiMelee : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             playAttack();
-            Attack();
+            Invoke("Attack", .2f);
         }
     }
 
