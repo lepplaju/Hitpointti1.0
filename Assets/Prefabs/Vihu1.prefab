@@ -155,3 +155,4 @@ MonoBehaviour:
   CanvasPrefab: {fileID: 683162362029516172, guid: e95e12d13f7d8c94898e5b2a785babef, type: 3}
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
+  spawningEnemies: {fileID: 0}

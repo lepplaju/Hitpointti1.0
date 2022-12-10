@@ -13,6 +13,7 @@ public class EnemyHPController : MonoBehaviour
     private int HealthPoints;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
+    private SpawningEnemies spawningEnemies;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class EnemyHPController : MonoBehaviour
         healthSlider = enemyCanvas.GetComponentInChildren<Slider>();
         healthSlider.maxValue = maxHP;
         healthSlider.value = maxHP;
+        spawningEnemies = enemyParent.GetComponentInParent<SpawningEnemies>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class EnemyHPController : MonoBehaviour
         healthSlider.value = HealthPoints;
         if (healthSlider.value <= 0)
         {
+            spawningEnemies.removeOneEnemyAlive();
             Destroy(gameObject);
         }
     }
