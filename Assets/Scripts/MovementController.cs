@@ -31,6 +31,7 @@ public class MovementController : MonoBehaviour
     {
         if(collision.collider.tag == "Enemy")
         {
+            pukkiHPController.PlayHitSound();
             pukkiHPController.TakeDamage(9f);
         }
         
@@ -42,4 +43,5 @@ public class MovementController : MonoBehaviour
             pukkiHPController.TakeDamage(1);
         }
     }
+
 }

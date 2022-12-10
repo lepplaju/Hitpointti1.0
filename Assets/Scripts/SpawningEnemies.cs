@@ -9,8 +9,12 @@ public class SpawningEnemies : MonoBehaviour
     [SerializeField] int maxNumberOfEnemies;
     [SerializeField] private int numberOfEnemiesAlive;
 
+    private AudioSource audioSource;
+    public AudioClip death;
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         numberOfEnemiesAlive =0;
     }
     private void Start()
@@ -30,5 +34,12 @@ public class SpawningEnemies : MonoBehaviour
     public void removeOneEnemyAlive()
     {
         numberOfEnemiesAlive -= 1;
+        PlayDeathSound();
+    }
+
+    public void PlayDeathSound()
+    {
+        audioSource.clip = death;
+        audioSource.Play();
     }
 }

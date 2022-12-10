@@ -14,8 +14,13 @@ public class PukkiHPController : MonoBehaviour
     private float pukkiHP;
     private GameObject playerObj;
 
+    private AudioSource audioSource;
+    public AudioClip hit;
+    public AudioClip death;
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
         pukkiHP = pukkiMaxHP;
     }
@@ -29,13 +34,27 @@ public class PukkiHPController : MonoBehaviour
         Debug.Log("taalla ollaan");
         healthSlider.value = pukkiHP;
         if (pukkiHP <= 0) {
+            PlayDeathSound(); // Ei toimi tällä tavoin
             Destroy(playerObj);
             Destroy(gameObject);
+            
         }
     }
     public void TakeDamage(float damageTaken)
     {
         pukkiHP -= damageTaken;
         UpdateHP();
+    }
+
+    public void PlayDeathSound()
+    {
+        audioSource.clip = death;
+        audioSource.Play();
+    }
+
+    public void PlayHitSound()
+    {
+        audioSource.clip = hit;
+        audioSource.Play();
     }
 }

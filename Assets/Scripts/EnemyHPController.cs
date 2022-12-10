@@ -15,8 +15,12 @@ public class EnemyHPController : MonoBehaviour
     [SerializeField] private TMP_Text healthText;
     private SpawningEnemies spawningEnemies;
 
+    private AudioSource audioSource;
+    public AudioClip hit;
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         enemyParent = gameObject;
         enemyCanvas = Instantiate(CanvasPrefab,enemyParent.transform);
         HealthPoints = maxHP;
@@ -38,6 +42,11 @@ public class EnemyHPController : MonoBehaviour
         {
             spawningEnemies.removeOneEnemyAlive();
             Destroy(gameObject);
+            ScoreManager.instance.AddKill();
+            ScoreManager.instance.AddScore(10);
+        } else
+        {
+            PlayHitSound();
         }
     }
     public void TakeDamage(int damage)
@@ -46,4 +55,12 @@ public class EnemyHPController : MonoBehaviour
         HealthPoints -= damage;
         updateHealth();
     }
+
+    public void PlayHitSound()
+    {
+        audioSource.clip = hit;
+        audioSource.Play();
+    }
+
+
 }
