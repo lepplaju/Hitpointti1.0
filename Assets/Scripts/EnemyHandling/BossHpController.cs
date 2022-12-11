@@ -6,11 +6,13 @@ using TMPro;
 
 public class BossHpController : MonoBehaviour
 {
+    [SerializeField] private TimerScript timerScript;
+    private int hpMultiplier;
     [SerializeField] private EnemyMovementController enemyMovementController;
     [SerializeField] private GameObject enemyParent;
     private Canvas enemyCanvas;
     [SerializeField] Canvas CanvasPrefab;
-    private int EnemyMaxHP = 1000;
+    private int EnemyMaxHP;
     private int HealthPoints;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
@@ -22,16 +24,19 @@ public class BossHpController : MonoBehaviour
         enemyMovementController = GetComponentInParent<EnemyMovementController>();
         enemyParent = gameObject;
         enemyCanvas = Instantiate(CanvasPrefab, enemyParent.transform);
-        HealthPoints = EnemyMaxHP;
         healthSlider = enemyCanvas.GetComponentInChildren<Slider>();
-        healthSlider.maxValue = EnemyMaxHP;
-        healthSlider.value = EnemyMaxHP;
+
         healthText = enemyCanvas.GetComponentInChildren<TMP_Text>();
         spawningEnemies = enemyParent.GetComponentInParent<SpawnBoss>();
     }
 
     private void Start()
     {
+        timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
+        hpMultiplier = timerScript.getTimeFromStart()*3;
+        HealthPoints = EnemyMaxHP = 1000 + hpMultiplier;
+        healthSlider.maxValue = EnemyMaxHP;
+        healthSlider.value = EnemyMaxHP;
         healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
     }
 
@@ -50,7 +55,7 @@ public class BossHpController : MonoBehaviour
     {
         healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
         healthSlider.value = HealthPoints;
-        if (healthSlider.value <= 0)
+        if (healthSlider.value <= 1)
         {
             var clone = Instantiate(splatterAnimParent, transform);
             clone.transform.parent = null;

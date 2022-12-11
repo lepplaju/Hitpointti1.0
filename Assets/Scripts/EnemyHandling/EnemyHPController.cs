@@ -6,11 +6,13 @@ using TMPro;
 
 public class EnemyHPController : MonoBehaviour
 {
+    [SerializeField] private TimerScript timerScript;
+    private int hpMultiplier;
     [SerializeField] private EnemyMovementController enemyMovementController;
     [SerializeField] private GameObject enemyParent;
     private Canvas enemyCanvas;
     [SerializeField] Canvas CanvasPrefab;
-    private int EnemyMaxHP = 100;
+    private int EnemyMaxHP;
     private int HealthPoints;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
@@ -21,20 +23,21 @@ public class EnemyHPController : MonoBehaviour
     {
         enemyMovementController = GetComponentInParent<EnemyMovementController>();
         enemyParent = gameObject;
-        enemyCanvas = Instantiate(CanvasPrefab,enemyParent.transform);
-        HealthPoints = EnemyMaxHP;
+        enemyCanvas = Instantiate(CanvasPrefab, enemyParent.transform);
         healthSlider = enemyCanvas.GetComponentInChildren<Slider>();
-        healthSlider.maxValue = EnemyMaxHP;
-        healthSlider.value = EnemyMaxHP;
-        spawningEnemies = enemyParent.GetComponentInParent<SpawnRegular>();
         healthText = enemyCanvas.GetComponentInChildren<TMP_Text>();
+        spawningEnemies = enemyParent.GetComponentInParent<SpawnRegular>();
     }
     private void Start()
     {
+        timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
+        hpMultiplier = timerScript.getTimeFromStart();
+        EnemyMaxHP = 100 + hpMultiplier;
+        HealthPoints = EnemyMaxHP;
+        healthSlider.maxValue = EnemyMaxHP;
+        healthSlider.value = EnemyMaxHP;
         healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
     }
-
-    // Update is called once per frame
     void Update()
     {
         enemyCanvas.transform.position = new Vector3(enemyParent.transform.position.x, enemyParent.transform.position.y + 1f, transform.position.z);
@@ -49,7 +52,7 @@ public class EnemyHPController : MonoBehaviour
     {
         healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
         healthSlider.value = HealthPoints;
-        if (healthSlider.value <= 0)
+        if (healthSlider.value <= 1)
         {
             var clone =Instantiate(splatterAnimParent, transform);
             clone.transform.parent = null;

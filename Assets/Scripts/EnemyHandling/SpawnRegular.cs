@@ -23,7 +23,7 @@ public class SpawnRegular : MonoBehaviour
     {
         if (maxNumberOfEnemies > numberOfEnemiesAlive)
         {
-            Instantiate(enemyPrefab, this.transform);
+            Instantiate(enemyPrefab, transform);
             numberOfEnemiesAlive++;
         }
     }
