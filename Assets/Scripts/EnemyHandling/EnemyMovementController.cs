@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class EnemyMovementController : MonoBehaviour
 {
-    private Transform pukki;
+    [SerializeField] private Transform pukki;
     [SerializeField] private Rigidbody2D enemyRb;
     public float moveSpeed =1f;
     public float knockBackMultiplier;
     public bool canMove = true;
+    [SerializeField] private PukkiHPController pukkiHPController;
+
 
     private void Start()
     {
+        pukkiHPController = GameObject.FindGameObjectWithTag("HpCanvas").GetComponent<PukkiHPController>();
         //knockBackMultiplier = 50f;
         enemyRb = GetComponent<Rigidbody2D>();
-        pukki = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if (pukkiHPController.getCurrentHp() >= 0)
+        {
+            pukki = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
     void Update()
     {

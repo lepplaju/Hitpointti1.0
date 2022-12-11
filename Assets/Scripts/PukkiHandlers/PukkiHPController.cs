@@ -38,7 +38,7 @@ public class PukkiHPController : MonoBehaviour
         healthSlider.value = pukkiHP;
         if (pukkiHP <= 0) {
             Destroy(playerObj);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
     public void TakeDamage(float damageTaken)
