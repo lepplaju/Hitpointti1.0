@@ -26,11 +26,9 @@ public class PukkiMelee : MonoBehaviour
             isAttackPressed = true;
 
             playAttack();
-            Debug.Log("Attack is pressed");
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            Debug.Log("Attack is NOT pressed");
             isAttackPressed = false;
         }
     }

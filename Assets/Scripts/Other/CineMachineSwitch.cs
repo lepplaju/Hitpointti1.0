@@ -17,7 +17,6 @@ public class CineMachineSwitch : MonoBehaviour
     }
     private void SwitchPrio()
     {
-        Debug.Log("This activates");
         cameraFollow.Priority=1;
         cameraZoomedOut.Priority = 0;
     }

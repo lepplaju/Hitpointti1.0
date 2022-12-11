@@ -8,8 +8,10 @@ public class TimerScript : MonoBehaviour
     private GameObject endScreen;
     private GameObject playerObj;
     private int timeFromStart;
+    public bool pukkiOnElossa;
     void Start()
     {
+        pukkiOnElossa = true;
         endScreen = GameObject.FindGameObjectWithTag("EndScreen");
         endScreen.SetActive(false);
         playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -38,6 +40,7 @@ public class TimerScript : MonoBehaviour
 
     private void ShowEndScreen()
     {
+        pukkiOnElossa = false;
         var text = endScreen.GetComponentInChildren<TMP_Text>();
         text.text = "You Survived for " + timeFromStart + " seconds!";
         endScreen.SetActive(true);

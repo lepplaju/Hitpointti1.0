@@ -10,15 +10,21 @@ public class EnemyMovementController : MonoBehaviour
     public float knockBackMultiplier;
     public bool canMove = true;
     [SerializeField] private PukkiHPController pukkiHPController;
-
+    [SerializeField] private bool _pukkiOnElossa;
+    private TimerScript timerScript;
 
     private void Start()
     {
-        pukkiHPController = GameObject.FindGameObjectWithTag("HpCanvas").GetComponent<PukkiHPController>();
+        timerScript = GameObject.FindGameObjectWithTag("Background").GetComponent<TimerScript>();
+        _pukkiOnElossa = timerScript.pukkiOnElossa;
+        if (_pukkiOnElossa)
+        {
+            pukkiHPController = GameObject.FindGameObjectWithTag("HpCanvas").GetComponent<PukkiHPController>();
+        }   
         //knockBackMultiplier = 50f;
         enemyRb = GetComponent<Rigidbody2D>();
 
-        if (pukkiHPController.getCurrentHp() >= 0)
+        if (_pukkiOnElossa)
         {
             pukki = GameObject.FindGameObjectWithTag("Player").transform;
         }
