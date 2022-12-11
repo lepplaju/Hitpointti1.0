@@ -9,18 +9,25 @@ public class SpawnBoss : MonoBehaviour
     [SerializeField] int maxNumberOfEnemies;
     [SerializeField] private int numberOfEnemiesAlive;
     [SerializeField] private float timeBetweenSpawns;
+    [SerializeField] private TimerScript timerScript;
 
 
     private void Awake()
     {
+        maxNumberOfEnemies =1;
         numberOfEnemiesAlive = 0;
         timeBetweenSpawns = 3f;
     }
     private void Start()
     {
-        InvokeRepeating("SpawnEnemy", 0f, timeBetweenSpawns);
+        timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
+        InvokeRepeating("SpawnEnemy", 10f, timeBetweenSpawns);
     }
 
+    private void Update()
+    {
+        maxNumberOfEnemies = maxNumberOfEnemies + timerScript.getTimeFromStart() / 20;
+    }
     private void SpawnEnemy()
     {
         if (maxNumberOfEnemies > numberOfEnemiesAlive)

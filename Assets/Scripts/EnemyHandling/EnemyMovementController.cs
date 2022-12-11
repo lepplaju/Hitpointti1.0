@@ -27,7 +27,7 @@ public class EnemyMovementController : MonoBehaviour
     public void knockBack(float force)
     {
         canMove = false;
-        Invoke("MoveTrue", .01f);
+        Invoke("MoveTrue", .05f);
         enemyRb.AddForce((transform.position-pukki.transform.position) *force);
         //Vector2.MoveTowards(pukki.position, transform.position,knockBackMultiplier * Time.deltaTime);
     }

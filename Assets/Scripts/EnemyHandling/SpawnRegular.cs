@@ -15,41 +15,27 @@ public class SpawnRegular : MonoBehaviour
 
     private void Awake()
     {
+        maxNumberOfEnemies = 2;
         timeBetweenSpawns = 2f;
         numberOfEnemiesAlive =0;
     }
     private void Start()
     {
         timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
-        InvokeRepeating("SpawnEnemy", 1f, timeBetweenSpawns);
+        InvokeRepeating("SpawnEnemy", 3f, timeBetweenSpawns);
     }
     private void Update()
     {
-        customRepeating();
+        maxNumberOfEnemies = maxNumberOfEnemies + timerScript.getTimeFromStart() / 10;
     }
     private void SpawnEnemy()
     {
-        Debug.Log("we are here");
-        if (numberOfEnemiesAlive <= 0)
-        {
-            NextWave();
-        }
-        if (maxNumberOfEnemies < numberOfEnemiesAlive)
-        {
-            canSpawn = false;
-        }
-            if (maxNumberOfEnemies > numberOfEnemiesAlive && canSpawn)
+
+            if (maxNumberOfEnemies > numberOfEnemiesAlive)
         {
             Instantiate(enemyPrefab, transform);
             numberOfEnemiesAlive++;
         }
-    }
-    private void NextWave()
-    {
-        Debug.Log("nextwave!");
-        canSpawn = true;
-        maxEnemiesAdd =timerScript.getTimeFromStart() / 10;
-        maxNumberOfEnemies += maxEnemiesAdd;
     }
 
     public void removeOneEnemyAlive()

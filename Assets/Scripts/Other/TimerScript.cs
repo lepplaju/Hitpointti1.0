@@ -8,7 +8,7 @@ public class TimerScript : MonoBehaviour
     void Start()
     {
         timeFromStart = 0;
-        InvokeRepeating("addOne", 5, 1);
+        InvokeRepeating("addOne", 3, 1);
     }
 
 
