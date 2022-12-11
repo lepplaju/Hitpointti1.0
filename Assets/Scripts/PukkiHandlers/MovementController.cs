@@ -17,7 +17,20 @@ public class MovementController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = movementInput * moveSpeed;
+            rb.velocity = movementInput * moveSpeed;
+    }
+    private void LateUpdate()
+    {
+        if (Input.GetButtonDown("Sprint"))
+        {
+            moveSpeed = 6f;
+            Debug.Log("sprinting");
+        }
+        if(Input.GetButtonUp("Sprint"))
+        {
+            Debug.Log("not Sprinting");
+            moveSpeed = 4f;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

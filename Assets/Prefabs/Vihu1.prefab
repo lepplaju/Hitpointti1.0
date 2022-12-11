@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4954125115981353580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,9 +101,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.2
 --- !u!50 &1480467336828316730
 Rigidbody2D:
   serializedVersion: 4
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff2a633de0a94342b00d125b6a58ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerScript: {fileID: 0}
   enemyMovementController: {fileID: 0}
   enemyParent: {fileID: 0}
   CanvasPrefab: {fileID: 683162362029516172, guid: e95e12d13f7d8c94898e5b2a785babef, type: 3}

@@ -10,7 +10,7 @@ public class PukkiHPController : MonoBehaviour
     [SerializeField] private float offset;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
-    [SerializeField] private float pukkiMaxHP = 10000;
+    [SerializeField] private float pukkiMaxHP = 250;
     [SerializeField] private Image glowHealthbar;
     private float pukkiHP;
     private GameObject playerObj;
