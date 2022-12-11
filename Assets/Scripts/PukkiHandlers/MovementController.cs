@@ -9,7 +9,13 @@ public class MovementController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform keskiPiste;
     [SerializeField] private PukkiHPController pukkiHPController;
+    [SerializeField] private AudioSource backgroundAudio;
+    private GameObject canvas;
 
+    private void Start()
+    {
+        backgroundAudio = GameObject.FindGameObjectWithTag("HpCanvas").GetComponentInChildren<AudioSource>();
+    }
     void Update()
     {
         movementInput.x = Input.GetAxisRaw("Horizontal");
@@ -17,7 +23,25 @@ public class MovementController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = movementInput * moveSpeed;
+            rb.velocity = movementInput * moveSpeed;
+    }
+    private void LateUpdate()
+    {
+        if (Input.GetButtonDown("PlayMusic"))
+        {
+            Debug.Log("musicToggle");
+            backgroundAudio.mute = !backgroundAudio.mute;
+        }
+        if (Input.GetButtonDown("Sprint"))
+        {
+            moveSpeed = 6f;
+            Debug.Log("sprinting");
+        }
+        if(Input.GetButtonUp("Sprint"))
+        {
+            Debug.Log("not Sprinting");
+            moveSpeed = 4f;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -31,13 +55,17 @@ public class MovementController : MonoBehaviour
     {
         if(collision.collider.tag == "Enemy")
         {
-            pukkiHPController.TakeDamage(9f);
+            pukkiHPController.TakeDamage(3f);
         }
-        
+        if (collision.collider.tag == "Boss")
+        {
+            pukkiHPController.TakeDamage(8f);
+        }
+
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Enemy" || collision.collider.tag == "Boss")
         {
             pukkiHPController.TakeDamage(1);
         }

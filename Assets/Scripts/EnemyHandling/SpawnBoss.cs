@@ -2,22 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawningEnemies : MonoBehaviour
+public class SpawnBoss : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     //[SerializeField] Transform SpawnPoint;
     [SerializeField] int maxNumberOfEnemies;
     [SerializeField] private int numberOfEnemiesAlive;
+    [SerializeField] private float timeBetweenSpawns;
+    [SerializeField] private float timeBeforeFirstSpwawn;
+    [SerializeField] private TimerScript timerScript;
+
 
     private void Awake()
     {
-        numberOfEnemiesAlive =0;
+        maxNumberOfEnemies =1;
+        numberOfEnemiesAlive = 0;
     }
     private void Start()
     {
-        InvokeRepeating("SpawnEnemy", 5f, 10f);
+        timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
+        InvokeRepeating("SpawnEnemy", timeBeforeFirstSpwawn, timeBetweenSpawns);
     }
 
+    private void Update()
+    {
+        maxNumberOfEnemies = maxNumberOfEnemies + timerScript.getTimeFromStart() / 100;
+    }
     private void SpawnEnemy()
     {
         if (maxNumberOfEnemies > numberOfEnemiesAlive)

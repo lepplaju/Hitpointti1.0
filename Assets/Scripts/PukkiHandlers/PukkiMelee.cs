@@ -8,8 +8,11 @@ public class PukkiMelee : MonoBehaviour
     public float attackRange = 1f;
     public LayerMask enemyLayer;
     [SerializeField] private Animator pukkiAnimator;
-
+    private bool isAttackPressed = false;
     public int attackDamage = 30;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip swingSound;
+
 
     private void Awake()
     {
@@ -20,18 +23,32 @@ public class PukkiMelee : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            isAttackPressed = true;
+
             playAttack();
-            Attack();
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            isAttackPressed = false;
         }
     }
 
     void Attack()
     {
+        audioSource.PlayOneShot(swingSound);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyHPController>().TakeDamage(attackDamage);
+            if (enemy.tag == "Boss") 
+            {
+                enemy.GetComponent<BossHpController>().TakeDamage(attackDamage);
+            }
+            else if(enemy.tag == "Enemy")
+            {
+                enemy.GetComponent<EnemyHPController>().TakeDamage(attackDamage);
+            }
+            
         }
     }
 
@@ -45,6 +62,19 @@ public class PukkiMelee : MonoBehaviour
 
     private void playAttack()
     {
+        Invoke("Attack", .2f);
         pukkiAnimator.SetTrigger("MeleeAttack");
+
+        if (isAttackPressed)
+        {
+            Invoke("AutoAttack", .2f);
+        }
+    }
+    private void AutoAttack()
+    {
+        if (isAttackPressed)
+        {
+            Invoke("playAttack", .2f);
+        }
     }
 }

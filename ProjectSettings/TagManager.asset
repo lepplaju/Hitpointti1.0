@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - EnemyCounter
   - Fill
+  - Boss
+  - Background
+  - HpCanvas
+  - EndScreen
   layers:
   - Default
   - TransparentFX
