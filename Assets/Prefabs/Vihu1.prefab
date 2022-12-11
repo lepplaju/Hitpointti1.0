@@ -159,4 +159,5 @@ MonoBehaviour:
   CanvasPrefab: {fileID: 683162362029516172, guid: e95e12d13f7d8c94898e5b2a785babef, type: 3}
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
-  splatterAnimParent: {fileID: 6364599422924551608, guid: d4e5120e5117e8843ae98474b7b6fb78, type: 3}
+  splatterAnimParent: {fileID: 6996914426765010847, guid: c8425f876a1842748b9576e6eac623c9, type: 3}
+  deathAnimParent: {fileID: 6364599422924551608, guid: d4e5120e5117e8843ae98474b7b6fb78, type: 3}

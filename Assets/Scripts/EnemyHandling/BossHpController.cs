@@ -17,7 +17,8 @@ public class BossHpController : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
     private SpawnBoss spawningEnemies;
-    [SerializeField] private GameObject splatterAnimParent;
+    [SerializeField] private GameObject deathAnim;
+    [SerializeField] private GameObject splatterAnim;
 
     private void Awake()
     {
@@ -34,7 +35,7 @@ public class BossHpController : MonoBehaviour
     {
         timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
         hpMultiplier = timerScript.getTimeFromStart()*3;
-        HealthPoints = EnemyMaxHP = 1000 + hpMultiplier;
+        HealthPoints = EnemyMaxHP = 250 + hpMultiplier;
         healthSlider.maxValue = EnemyMaxHP;
         healthSlider.value = EnemyMaxHP;
         healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
@@ -47,6 +48,8 @@ public class BossHpController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        var splat = Instantiate(splatterAnim, transform);
+        Destroy(splat, .4f);
         enemyMovementController.knockBack(15f);
         HealthPoints -= damage;
         updateHealth();
@@ -57,7 +60,7 @@ public class BossHpController : MonoBehaviour
         healthSlider.value = HealthPoints;
         if (healthSlider.value <= 1)
         {
-            var clone = Instantiate(splatterAnimParent, transform);
+            var clone = Instantiate(deathAnim, transform);
             clone.transform.parent = null;
             spawningEnemies.removeOneEnemyAlive();
             Destroy(gameObject);

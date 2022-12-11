@@ -18,6 +18,7 @@ public class EnemyHPController : MonoBehaviour
     [SerializeField] private TMP_Text healthText;
     private SpawnRegular spawningEnemies;
     [SerializeField] private GameObject splatterAnimParent;
+    [SerializeField] private GameObject deathAnimParent;
 
     private void Awake()
     {
@@ -44,6 +45,8 @@ public class EnemyHPController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        var splat = Instantiate(splatterAnimParent, transform);
+        Destroy(splat, .4f);
         enemyMovementController.knockBack(50f);
         HealthPoints -= damage;
         updateHealth();
@@ -54,7 +57,7 @@ public class EnemyHPController : MonoBehaviour
         healthSlider.value = HealthPoints;
         if (healthSlider.value <= 1)
         {
-            var clone =Instantiate(splatterAnimParent, transform);
+            var clone =Instantiate(deathAnimParent, transform);
             clone.transform.parent = null;
             spawningEnemies.removeOneEnemyAlive();
             Destroy(gameObject);
