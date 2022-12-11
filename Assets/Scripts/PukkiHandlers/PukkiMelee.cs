@@ -8,6 +8,7 @@ public class PukkiMelee : MonoBehaviour
     public float attackRange = 1f;
     public LayerMask enemyLayer;
     [SerializeField] private Animator pukkiAnimator;
+    private bool isAttackPressed = false;
 
     public int attackDamage = 30;
 
@@ -20,8 +21,15 @@ public class PukkiMelee : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            isAttackPressed = true;
+
             playAttack();
-            Invoke("Attack", .2f);
+            Debug.Log("Attack is pressed");
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            Debug.Log("Attack is NOT pressed");
+            isAttackPressed = false;
         }
     }
 
@@ -53,6 +61,19 @@ public class PukkiMelee : MonoBehaviour
 
     private void playAttack()
     {
+        Invoke("Attack", .2f);
         pukkiAnimator.SetTrigger("MeleeAttack");
+
+        if (isAttackPressed)
+        {
+            Invoke("AutoAttack", .2f);
+        }
+    }
+    private void AutoAttack()
+    {
+        if (isAttackPressed)
+        {
+            Invoke("playAttack", .2f);
+        }
     }
 }
