@@ -9,8 +9,10 @@ public class PukkiMelee : MonoBehaviour
     public LayerMask enemyLayer;
     [SerializeField] private Animator pukkiAnimator;
     private bool isAttackPressed = false;
-
     public int attackDamage = 30;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip swingSound;
+
 
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class PukkiMelee : MonoBehaviour
 
     void Attack()
     {
+        audioSource.PlayOneShot(swingSound);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)

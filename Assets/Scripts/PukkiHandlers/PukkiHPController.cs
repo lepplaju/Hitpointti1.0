@@ -14,6 +14,9 @@ public class PukkiHPController : MonoBehaviour
     [SerializeField] private Image glowHealthbar;
     private float pukkiHP;
     private GameObject playerObj;
+    [SerializeField] private AudioSource BackgroundAudioSource;
+    [SerializeField] private AudioClip pukkiTakesDmgClip;
+    [SerializeField] private AudioClip pukkiDiesClip;
 
     private void Awake()
 
@@ -24,6 +27,7 @@ public class PukkiHPController : MonoBehaviour
         healthSlider.maxValue = pukkiMaxHP;
         healthSlider.value = pukkiMaxHP;
         healthText.text = "Health " + pukkiHP + " / "+ pukkiMaxHP;
+        BackgroundAudioSource = GameObject.FindGameObjectWithTag("Background").GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -32,17 +36,22 @@ public class PukkiHPController : MonoBehaviour
 
     private void UpdateHP()
     {
-        glowHealthbar.color = new Color32(0, 0, 0, 0);
-        Invoke("changeColorBack", .1f);
+        if (pukkiHP % 4 == 0)
+        {
+            BackgroundAudioSource.PlayOneShot(pukkiTakesDmgClip);
+        }
         healthText.text = "Health " + pukkiHP + " / " + pukkiMaxHP;
         healthSlider.value = pukkiHP;
         if (pukkiHP <= 0) {
+            BackgroundAudioSource.PlayOneShot(pukkiDiesClip);
             Destroy(playerObj);
             gameObject.SetActive(false);
         }
     }
     public void TakeDamage(float damageTaken)
     {
+        glowHealthbar.color = new Color32(0, 0, 0, 75);
+        Invoke("changeColorBack", .01f);
         pukkiHP -= damageTaken;
         UpdateHP();
     }
