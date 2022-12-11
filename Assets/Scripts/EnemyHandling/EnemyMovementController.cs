@@ -12,7 +12,7 @@ public class EnemyMovementController : MonoBehaviour
 
     private void Start()
     {
-        knockBackMultiplier = 50f;
+        //knockBackMultiplier = 50f;
         enemyRb = GetComponent<Rigidbody2D>();
         pukki = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -24,12 +24,11 @@ public class EnemyMovementController : MonoBehaviour
         }   
     }
 
-    public void knockBack()
+    public void knockBack(float force)
     {
         canMove = false;
-        Invoke("MoveTrue", .1f);
-        Debug.Log("knockback");
-        enemyRb.AddForce((transform.position-pukki.transform.position) *knockBackMultiplier);
+        Invoke("MoveTrue", .01f);
+        enemyRb.AddForce((transform.position-pukki.transform.position) *force);
         //Vector2.MoveTowards(pukki.position, transform.position,knockBackMultiplier * Time.deltaTime);
     }
     private void MoveTrue()

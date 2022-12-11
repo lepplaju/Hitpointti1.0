@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawningEnemies : MonoBehaviour
+public class SpawnRegular : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     //[SerializeField] Transform SpawnPoint;
     [SerializeField] int maxNumberOfEnemies;
     [SerializeField] private int numberOfEnemiesAlive;
+    [SerializeField] private float timeBetweenSpawns = 10f;
 
     private void Awake()
     {
@@ -15,7 +16,7 @@ public class SpawningEnemies : MonoBehaviour
     }
     private void Start()
     {
-        InvokeRepeating("SpawnEnemy", 5f, 10f);
+        InvokeRepeating("SpawnEnemy", 5f, timeBetweenSpawns);
     }
 
     private void SpawnEnemy()

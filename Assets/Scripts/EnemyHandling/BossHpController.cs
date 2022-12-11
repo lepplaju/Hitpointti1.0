@@ -4,29 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyHPController : MonoBehaviour
+public class BossHpController : MonoBehaviour
 {
     [SerializeField] private EnemyMovementController enemyMovementController;
     [SerializeField] private GameObject enemyParent;
     private Canvas enemyCanvas;
     [SerializeField] Canvas CanvasPrefab;
-    private int EnemyMaxHP = 100;
+    private int EnemyMaxHP = 1000;
     private int HealthPoints;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
-    private SpawningEnemies spawningEnemies;
+    private SpawnBoss spawningEnemies;
     [SerializeField] private GameObject splatterAnimParent;
 
     private void Awake()
     {
         enemyMovementController = GetComponentInParent<EnemyMovementController>();
         enemyParent = gameObject;
-        enemyCanvas = Instantiate(CanvasPrefab,enemyParent.transform);
+        enemyCanvas = Instantiate(CanvasPrefab, enemyParent.transform);
         HealthPoints = EnemyMaxHP;
         healthSlider = enemyCanvas.GetComponentInChildren<Slider>();
         healthSlider.maxValue = EnemyMaxHP;
         healthSlider.value = EnemyMaxHP;
-        spawningEnemies = enemyParent.GetComponentInParent<SpawningEnemies>();
+        spawningEnemies = enemyParent.GetComponentInParent<SpawnBoss>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class EnemyHPController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        enemyMovementController.knockBack();
+        enemyMovementController.knockBack(5f);
         HealthPoints -= damage;
         updateHealth();
     }
@@ -45,7 +45,7 @@ public class EnemyHPController : MonoBehaviour
         healthSlider.value = HealthPoints;
         if (healthSlider.value <= 0)
         {
-            var clone =Instantiate(splatterAnimParent, transform);
+            var clone = Instantiate(splatterAnimParent, transform);
             clone.transform.parent = null;
             spawningEnemies.removeOneEnemyAlive();
             Destroy(gameObject);

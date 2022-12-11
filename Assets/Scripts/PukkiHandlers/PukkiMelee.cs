@@ -31,7 +31,15 @@ public class PukkiMelee : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyHPController>().TakeDamage(attackDamage);
+            if (enemy.tag == "Boss") 
+            {
+                enemy.GetComponent<BossHpController>().TakeDamage(attackDamage);
+            }
+            else if(enemy.tag == "Enemy")
+            {
+                enemy.GetComponent<EnemyHPController>().TakeDamage(attackDamage);
+            }
+            
         }
     }
 
