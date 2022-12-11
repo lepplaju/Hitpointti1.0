@@ -7,12 +7,12 @@ using TMPro;
 public class EnemyHPController : MonoBehaviour
 {
     [SerializeField] private TimerScript timerScript;
-    private int hpMultiplier;
+    [SerializeField] private float hpMultiplier;
     [SerializeField] private EnemyMovementController enemyMovementController;
     [SerializeField] private GameObject enemyParent;
     private Canvas enemyCanvas;
     [SerializeField] Canvas CanvasPrefab;
-    private int EnemyMaxHP;
+    [SerializeField] private int EnemyMaxHP;
     private int HealthPoints;
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TMP_Text healthText;
@@ -32,8 +32,8 @@ public class EnemyHPController : MonoBehaviour
     private void Start()
     {
         timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
-        hpMultiplier = timerScript.getTimeFromStart();
-        EnemyMaxHP = 100 + hpMultiplier;
+        int uusi = (int)(hpMultiplier * timerScript.getTimeFromStart());
+        EnemyMaxHP = EnemyMaxHP+uusi;
         HealthPoints = EnemyMaxHP;
         healthSlider.maxValue = EnemyMaxHP;
         healthSlider.value = EnemyMaxHP;

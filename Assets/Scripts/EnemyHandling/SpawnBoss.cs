@@ -9,6 +9,7 @@ public class SpawnBoss : MonoBehaviour
     [SerializeField] int maxNumberOfEnemies;
     [SerializeField] private int numberOfEnemiesAlive;
     [SerializeField] private float timeBetweenSpawns;
+    [SerializeField] private float timeBeforeFirstSpwawn;
     [SerializeField] private TimerScript timerScript;
 
 
@@ -16,17 +17,16 @@ public class SpawnBoss : MonoBehaviour
     {
         maxNumberOfEnemies =1;
         numberOfEnemiesAlive = 0;
-        timeBetweenSpawns = 3f;
     }
     private void Start()
     {
         timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
-        InvokeRepeating("SpawnEnemy", 10f, timeBetweenSpawns);
+        InvokeRepeating("SpawnEnemy", timeBeforeFirstSpwawn, timeBetweenSpawns);
     }
 
     private void Update()
     {
-        maxNumberOfEnemies = maxNumberOfEnemies + timerScript.getTimeFromStart() / 20;
+        maxNumberOfEnemies = maxNumberOfEnemies + timerScript.getTimeFromStart() / 100;
     }
     private void SpawnEnemy()
     {

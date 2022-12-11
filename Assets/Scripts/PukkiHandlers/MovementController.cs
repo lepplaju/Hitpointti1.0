@@ -9,7 +9,13 @@ public class MovementController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform keskiPiste;
     [SerializeField] private PukkiHPController pukkiHPController;
+    [SerializeField] private AudioSource backgroundAudio;
+    private GameObject canvas;
 
+    private void Start()
+    {
+        backgroundAudio = GameObject.FindGameObjectWithTag("HpCanvas").GetComponentInChildren<AudioSource>();
+    }
     void Update()
     {
         movementInput.x = Input.GetAxisRaw("Horizontal");
@@ -21,6 +27,11 @@ public class MovementController : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if (Input.GetButtonDown("PlayMusic"))
+        {
+            Debug.Log("musicToggle");
+            backgroundAudio.mute = !backgroundAudio.mute;
+        }
         if (Input.GetButtonDown("Sprint"))
         {
             moveSpeed = 6f;

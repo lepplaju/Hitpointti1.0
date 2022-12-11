@@ -137,10 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd18ae16fa5a2834095d09a4f767436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pukki: {fileID: 0}
   enemyRb: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 2.5
   knockBackMultiplier: 25
   canMove: 1
+  pukkiHPController: {fileID: 0}
+  _pukkiOnElossa: 0
 --- !u!114 &1696374377102524482
 MonoBehaviour:
   m_ObjectHideFlags: 0

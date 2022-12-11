@@ -10,19 +10,20 @@ public class SpawnRegular : MonoBehaviour
     [SerializeField] int maxNumberOfEnemies;
     [SerializeField] private int numberOfEnemiesAlive;
     [SerializeField] private float timeBetweenSpawns;
+    [SerializeField] private float timeBeforeFirstSpawn;
     private int maxEnemiesAdd;
     private bool canSpawn;
 
     private void Awake()
     {
         maxNumberOfEnemies = 2;
-        timeBetweenSpawns = 2f;
+//        timeBetweenSpawns = 2f;
         numberOfEnemiesAlive =0;
     }
     private void Start()
     {
         timerScript = GameObject.FindWithTag("Background").GetComponent<TimerScript>();
-        InvokeRepeating("SpawnEnemy", 3f, timeBetweenSpawns);
+        InvokeRepeating("SpawnEnemy", timeBeforeFirstSpawn, timeBetweenSpawns);
     }
     private void Update()
     {

@@ -137,10 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd18ae16fa5a2834095d09a4f767436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pukki: {fileID: 0}
   enemyRb: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 5
   knockBackMultiplier: 1000
   canMove: 1
+  pukkiHPController: {fileID: 0}
+  _pukkiOnElossa: 0
 --- !u!114 &-1072845415692767587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,9 +157,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerScript: {fileID: 0}
+  hpMultiplier: 0.5
   enemyMovementController: {fileID: 0}
   enemyParent: {fileID: 0}
   CanvasPrefab: {fileID: 683162362029516172, guid: e95e12d13f7d8c94898e5b2a785babef, type: 3}
+  EnemyMaxHP: 15
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
   splatterAnimParent: {fileID: 6996914426765010847, guid: c8425f876a1842748b9576e6eac623c9, type: 3}
