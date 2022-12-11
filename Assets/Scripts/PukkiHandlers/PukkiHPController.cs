@@ -21,6 +21,8 @@ public class PukkiHPController : MonoBehaviour
         pukkiMaxHP = 250;
         playerObj = GameObject.FindGameObjectWithTag("Player");
         pukkiHP = pukkiMaxHP;
+        healthSlider.maxValue = pukkiMaxHP;
+        healthSlider.value = pukkiMaxHP;
         healthText.text = "Health " + pukkiHP + " / "+ pukkiMaxHP;
     }
     private void Update()
