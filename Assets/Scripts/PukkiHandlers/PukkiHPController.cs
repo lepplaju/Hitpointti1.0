@@ -50,4 +50,8 @@ public class PukkiHPController : MonoBehaviour
     {
         glowHealthbar.color = new Color32(13, 128, 0, 255);
     }
+    public float getCurrentHp()
+    {
+        return pukkiHP;
+    }
 }

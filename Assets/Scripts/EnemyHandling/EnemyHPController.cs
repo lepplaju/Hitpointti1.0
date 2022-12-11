@@ -47,7 +47,7 @@ public class EnemyHPController : MonoBehaviour
     {
         var splat = Instantiate(splatterAnimParent, transform);
         Destroy(splat, .4f);
-        enemyMovementController.knockBack(50f);
+        enemyMovementController.knockBack(100f);
         HealthPoints -= damage;
         updateHealth();
     }
