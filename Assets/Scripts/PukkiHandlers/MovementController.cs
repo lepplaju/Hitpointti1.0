@@ -31,13 +31,17 @@ public class MovementController : MonoBehaviour
     {
         if(collision.collider.tag == "Enemy")
         {
-            pukkiHPController.TakeDamage(9f);
+            pukkiHPController.TakeDamage(3f);
         }
-        
+        if (collision.collider.tag == "Boss")
+        {
+            pukkiHPController.TakeDamage(8f);
+        }
+
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Enemy")
+        if (collision.collider.tag == "Enemy" || collision.collider.tag == "Boss")
         {
             pukkiHPController.TakeDamage(1);
         }

@@ -27,6 +27,11 @@ public class EnemyHPController : MonoBehaviour
         healthSlider.maxValue = EnemyMaxHP;
         healthSlider.value = EnemyMaxHP;
         spawningEnemies = enemyParent.GetComponentInParent<SpawnRegular>();
+        healthText = enemyCanvas.GetComponentInChildren<TMP_Text>();
+    }
+    private void Start()
+    {
+        healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
     }
 
     // Update is called once per frame
@@ -42,6 +47,7 @@ public class EnemyHPController : MonoBehaviour
     }
     public void updateHealth()
     {
+        healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
         healthSlider.value = HealthPoints;
         if (healthSlider.value <= 0)
         {

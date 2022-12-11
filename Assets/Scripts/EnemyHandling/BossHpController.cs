@@ -26,7 +26,13 @@ public class BossHpController : MonoBehaviour
         healthSlider = enemyCanvas.GetComponentInChildren<Slider>();
         healthSlider.maxValue = EnemyMaxHP;
         healthSlider.value = EnemyMaxHP;
+        healthText = enemyCanvas.GetComponentInChildren<TMP_Text>();
         spawningEnemies = enemyParent.GetComponentInParent<SpawnBoss>();
+    }
+
+    private void Start()
+    {
+        healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
     }
 
     // Update is called once per frame
@@ -36,12 +42,13 @@ public class BossHpController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        enemyMovementController.knockBack(5f);
+        enemyMovementController.knockBack(15f);
         HealthPoints -= damage;
         updateHealth();
     }
     public void updateHealth()
     {
+        healthText.text = "HP: " + HealthPoints + " / " + EnemyMaxHP;
         healthSlider.value = HealthPoints;
         if (healthSlider.value <= 0)
         {

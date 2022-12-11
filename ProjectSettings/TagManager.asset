@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyCounter
   - Fill
+  - Boss
   layers:
   - Default
   - TransparentFX
